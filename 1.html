@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy 22nd Birthday!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #1a0000 0%, #000000 100%);
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #ffd6d6;
+    }
+
+    .card {
+      background: rgba(30, 0, 0, 0.85);
+      border: 2px solid #800000;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      max-width: 400px;
+      transform: scale(0.9);
+      transition: transform 0.8s ease;
+    }
+
+    .card.open {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      color: #ffcccc;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #ffd6d6;
+      line-height: 1.5;
+    }
+
+    .hidden-message {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: opacity 1s ease, max-height 1.2s ease;
+    }
+
+    .card.open .hidden-message {
+      max-height: 400px;
+      opacity: 1;
+      margin-top: 20px;
+    }
+
+    .hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+    }
+
+    .heart {
+      position: absolute;
+      color: #ff4e50;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .button {
+      background: #800000;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background: #a00000;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card" id="birthdayCard">
+  <h1>Click to Open 🎁</h1>
+  <button class="button" onclick="openCard()">Open Card</button>
+  <div class="hidden-message">
+    <h1>Happy 22nd, Love ❤️</h1>
+    <p>
+      You are everything warm, deep, rich, and unforgettable.<br>
+      Like the color maroon... but make it legendary.<br><br>
+      Here's to 22 years of being amazing—and to every moment still ahead with me by your side. 💋
+    </p>
+  </div>
+  <div class="hearts" id="hearts"></div>
+</div>
+
+<script>
+  function openCard() {
+    const card = document.getElementById('birthdayCard');
+    card.classList.toggle('open');
+    launchHearts();
+  }
+
+  function launchHearts() {
+    const heartsContainer = document.getElementById('hearts');
+    for (let i = 0; i < 40; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerText = '❤️';
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.fontSize = (Math.random() * 20 + 14) + 'px';
+      heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+  }
+</script>
+
+</body>
+</html>
